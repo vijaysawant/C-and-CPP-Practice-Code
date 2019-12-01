@@ -28,11 +28,8 @@ class Demo
     { 
         cout<<"Inside copy constructor"<<endl;
         a = ref_obj.a;
-        //ptr = ref_obj.ptr;
-        ptr = new int(5);
-        for(int i = 0; i < 5 ; i++)
-           ptr[i++] = i;
-        cout<<"a="<<a<<" *ptr="<<(*ptr)<<endl;
+        ptr = ref_obj.ptr;
+		cout<<"a="<<a<<" *ptr="<<(*ptr)<<endl;
     }
 };
 int main()
