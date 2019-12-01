@@ -1,2 +1,2 @@
-# Demo_Repository
-This is demo Repository
+# CPP Practice code
+This repo contains c++ practiced code
