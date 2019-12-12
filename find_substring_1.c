@@ -1,8 +1,8 @@
 /*
 Program to find substring inside main string without using built-in functions
 Ex-
-mainstr = "performance";
-substr = "for";
+mainstr = "performance"
+substr = "for"
 
 Output-
 string found at index : 3
