@@ -1,3 +1,12 @@
+/*
+Program to find substring inside main string without using built-in functions
+Ex-
+substring = "for"
+main_string = "performance"
+
+Output-
+Index = 3
+*/
 #include <stdio.h>
 #include <string.h>
 
@@ -30,15 +39,10 @@ int find_substring(char *sub_string, char *main_string)
     }
     return -1;
 }
-
 int main()
-{
-    printf("=========================================\n\n");
-    
+{    
     int res = 0;
-    res = find_substring("force", "forr");
+    res = find_substring("for", "performance");
     printf("Index = %d\n",res);
-
-    printf("\n\n=========================================");
     return 0;
 }
