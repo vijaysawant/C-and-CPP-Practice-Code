@@ -1,3 +1,12 @@
+/*
+Program to find substring inside main string without using built-in functions
+Ex-
+mainstr = "performance";
+substr = "for";
+
+Output-
+string found at index : 3
+*/
 #include<stdio.h>
 #include<string.h>
 typedef const char * mystring;
