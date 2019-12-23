@@ -1,0 +1,604 @@
+Linux Commands -
+# ls dirname = Shows the contents of the directory specified.
+# ls -i = inode number from current directory
+# ls -al = list all directories and files also prints info related to disk inode
+# ls -ltr = list all directories and files also prints info related
+	        to disk inode in sorted desc order (date wise)
+# cat filename = Displays a filename.
+# cd dirname = Moves you to the directory identified.
+# cp file1 file2 = Copies one file/directory to specified location.
+# file filename = Identifies the file type (binary, text, etc).
+# find filename dir = Finds a file/directory.
+# head filename = Shows the beginning of a file.
+# less filename = Browses through a file from end or beginning.
+# mkdir dirname = Creates the specified directory.
+# more filename = Browses through a file from beginning to end.
+# mv file1 file2 = Moves the location of or renames a file/directory.
+# pwd = Shows the current directory the user is in.
+# rm filename = Removes a file.
+# rmdir dirname = Removes a directory.
+# tail filename = Shows the end of a file.
+# touch filename = Creates a blank file or modifies an existing file.s attributes.
+# whereis filename = Shows the location of a file.
+# which filename = Shows the location of a file if it is in your PATH.
+# gzip filename.txt = compress the file, and extension will be .gz
+# gunzip filename.txt.gz = Uncompress a file
+
+# rpm -qa = (Red-Hat Package Manager) list out all installed packages/modules
+	q : qurey
+	a : enabling
+# echo "Contents to write in file." > filename = Command use to write into the file.
+# ways to write contents in file
+	1.
+	cat > outfile.txt <<EOF
+	>some text
+	>to save
+	>EOF
+
+	2.
+	cat > outfile.txt
+	>Enter text
+	>to save press ctrl-d
+	
+	3.
+	cat file1 >> file2
+	- copy and append contents of file1 to file2
+	
+# fdisk [options] <disk>      change partition table
+# fdisk [options] -l [<disk>] list partition table(s)
+
+	Display or manipulate a disk partition table.
+
+	Options:
+	 -b, --sector-size <size>      physical and logical sector size
+	 -B, --protect-boot            don't erase bootbits when create a new label
+	 -c, --compatibility[=<mode>]  mode is 'dos' or 'nondos' (default)
+	 -L, --color[=<when>]          colorize output (auto, always or never)
+									 colors are enabled by default
+	 -l, --list                    display partitions end exit
+	 -o, --output <list>           output columns
+	 -t, --type <type>             recognize specified partition table type only
+	 -u, --units[=<unit>]          display units: 'cylinders' or 'sectors' (default)
+	 -s, --getsz                   display device size in 512-byte sectors [DEPRECATED]
+		 --bytes                   print SIZE in bytes rather than in human readable format
+
+	 -C, --cylinders <number>      specify the number of cylinders
+	 -H, --heads <number>          specify the number of heads
+	 -S, --sectors <number>        specify the number of sectors per track
+
+	 -h, --help     display this help and exit
+	 -V, --version  output version information and exit
+
+
+# grep - globally search for regular expression and print out.
+	   - The grep filter searches a file for a particular pattern of characters,
+         and displays all lines that contain that pattern.
+		 # grep [options] pattern [files]
+		 
+		 Options Description
+		-c : This prints only a count of the lines that match a pattern
+		-h : Display the matched lines, but do not display the filenames.
+		-i : Ignores, case for matching
+		-l : Displays list of a filenames only.
+		-n : Display the matched lines and their line numbers.
+		-v : This prints out all the lines that do not matches the pattern
+		-e exp : Specifies expression with this option. Can use multiple times.
+		-f file : Takes patterns from file, one per line.
+		-E : Treats pattern as an extended regular expression (ERE)
+		-w : Match whole word
+		-o : Print only the matched parts of a matching line,
+		     with each such part on a separate output line.
+Ref Link : https://www.techrepublic.com/article/10-ways-to-use-grep-to-search-files-in-linux/
+		 
+# uname [-a|-s|-n|......] =
+  -a, --all                print all information, in the following order,
+                             except omit -p and -i if unknown:
+  -s, --kernel-name        print the kernel name
+  -n, --nodename           print the network node hostname
+  -r, --kernel-release     print the kernel release
+  -v, --kernel-version     print the kernel version
+  -m, --machine            print the machine hardware name
+  -p, --processor          print the processor type (non-portable)
+  -i, --hardware-platform  print the hardware platform (non-portable)
+  -o, --operating-system   print the operating system
+
+# df -k = (disk free) displays the disk space usage in kilobytes, also can use -h (human readable)
+	Filesystem     1K-blocks    Used Available Use% Mounted on
+	udev             1005828       0   1005828   0% /dev
+	tmpfs             204832   10976    193856   6% /run
+	/dev/sda1       41151808 1675864  37362512   5% /
+	tmpfs            1024156       0   1024156   0% /dev/shm
+	tmpfs               5120       0      5120   0% /run/lock
+	tmpfs            1024156       0   1024156   0% /sys/fs/cgroup
+	tmpfs             204832       0    204832   0% /run/user/0
+	df -hk
+
+	[root@localhost /]# df -hk
+	Filesystem          1K-blocks    Used Available Use% Mounted on
+	/dev/mapper/live-rw   8125880 5416860   2608756  68% /
+	devtmpfs               989128       0    989128   0% /dev
+	tmpfs                 1023800       4   1023796   1% /dev/shm
+	tmpfs                 1023800   17796   1006004   2% /run
+
+	
+	df -i = display the information of number of used inodes and their percentage for the file system
+		Ex-
+		[root@tecmint ~]# df -i
+		Filesystem            Inodes   IUsed   IFree IUse% Mounted on
+		/dev/cciss/c0d0p2    20230848  133143 20097705    1% /
+		/dev/cciss/c0d0p5    6403712  798613 5605099   13% /home
+		/dev/cciss/c0d0p3    7685440 1388241 6297199   19% /data
+		/dev/cciss/c0d0p1      76304      40   76264    1% /boot
+		tmpfs                  64369       1   64368    1% /dev/shm
+	
+	df -T =  It will display file system type along with other information.
+		Ex-
+		[root@tecmint ~]# df -T
+		Filesystem		Type   1K-blocks  Used      Available Use% Mounted on
+		/dev/cciss/c0d0p2	ext3    78361192  23188812  51127616  32%   /
+		/dev/cciss/c0d0p5	ext3    24797380  22273432  1243972   95%   /home
+		/dev/cciss/c0d0p3	ext3    29753588  25503792  2713984   91%   /data
+		/dev/cciss/c0d0p1	ext3    295561     21531    258770    8%    /boot
+		tmpfs			tmpfs   257476         0    257476    0%   /dev/shm
+
+	df -t ext3 = command will only display ext3 file system.
+	df -x ext3 = command will only display other file systems types other than ext3.
+		
+# du = (disk usage) show disk space usage on a particular directory. 
+		command would display number of blocks consumed by each directory
+		$du /etc 
+		10 /etc/cron.d 
+		126 /etc/default 
+		6 /etc/dfs 
+		... 
+		$
+free =  It shows the total amount of free and used physical and swap memory in the system,
+		as well as the buffers used by the kernel.
+	# free
+				  total        used        free      shared  buff/cache   available
+	Mem:        2048312      109372     1454332       21212      484608     1750504
+	Swap:             0           0           0
+
+
+File Permissions -
+	- Linux is a multi-user operating system, so it has security to prevent people from 
+	  accessing each other’s confidential files.
+	Ex-
+	root@auto_imx_ubuntu16_endpoint_2:/home/vijay# ls -l
+	total 28
+	-rw-r--r-- 1 root root   38 May 24 00:34 cpfile.txt
+	drwxr-xr-x 2 root root 4096 May 24 01:51 dir
+	drwxr-xr-x 2 root root 4096 May 24 05:06 dir_0
+	-rw-r--r-- 1 root root   28 May 24 00:22 myfile.txt
+	-rw-r--r-- 1 root root  128 May 24 00:39 OS_Info.txt
+	-rw-r--r-- 1 root root   38 May 24 00:31 temp1
+	-rw-r--r-- 1 root root   28 May 24 00:35 vijay.txt
+
+	- There’s a lot of information in those lines, take last line
+	( -rw-r--r-- 1 root root   28 May 24 00:35 vijay.txt )
+	1. The first character will almost always be either a ‘-‘, which means it’s a file, or a ‘d’, which means it’s a directory.
+	2. The next nine characters (rw-r--r--) show the security permissions.
+	3. Link count - Number of hard links relative to inode
+	4. The next column shows the owner of the file. In this case it is “root”.
+	5. The next column shows the group owner of the file.
+	6. The next column shows the size of the file in bytes.
+	7. The next column shows the date and time the file was last modified.
+	8. The final column gives the filename.
+		
+Changing security permissions
+	- The command you use to change the security permissions on files is called “chmod”, which stands for “change mode”,
+      because the nine security characters are collectively called the security “mode” of the file.
+	- The first argument you give to the “chmod” command is ‘u’, ‘g’, ‘o’. We use:
+		u for user
+		g for group
+		o for others,
+		you can also use a combination of them (u,g,o).
+		This specifies which of the three groups you want to modify.
+	- After this use
+		‘+’ for adding
+		‘-‘ for removing and
+		“=” for assigning a permission.
+		
+	Ex-
+	- there is no execute permission for myfile.txt
+		# ls -l myfile.txt
+		-rw-r--r-- 1 root root 28 May 24 00:22 myfile.txt
+	
+	- if we want to give “execute” permission to the “other” for file “myfile.txt”
+		# chmod o+x myfile.txt
+		-rw-r--r-x 1 root root 28 May 24 00:22 myfile.txt
+Process -
+	- A process can be run in two ways
+	- 1)Foreground Process : Every process when started runs in foreground by default,
+		receives input from the keyboard and sends output to the screen.
+		When a command/process is running in the foreground and is taking a lot of time,
+		no other processes can be run or started because the prompt would not be available
+		until the program finishes processing and comes out.
+	  2)Backround Process : It runs in the background without keyboard input and waits till
+		keyboard input is required.
+		Thus, other processes can be done in parallel. They do not have to wait for the previous
+		process to be completed.
+		Adding "&" along with the command starts it as a background process.
+	- Tracking ongoing processes
+		# ps = (process status) list of running process
+			[root@eosnode-1 ~]# ps
+			  PID TTY          TIME CMD
+			24195 pts/0    00:00:00 bash
+			24679 pts/0    00:00:00 ps
+		# ps -f = (full) more information can be used along with ps
+			[root@eosnode-1 ~]# ps -f
+			UID        PID  PPID  C STIME TTY          TIME CMD
+			root     24195 24183  0 22:43 pts/0    00:00:00 -bash
+			root     24582 24195  0 22:46 pts/0    00:00:00 ps -f
+		# ps PID = single process information.
+			[root@eosnode-1 ~]# ps 24195
+			PID TTY      STAT   TIME COMMAND
+			24195 pts/0    Ss     0:00 -bash
+
+	- Stopping a process
+		# kill PID
+		- if process ignores regular kill command use -9 with PID
+		# kill -9 PID
+	
+	# top = This command is used to show all the running processes within the working environment of Linux.
+	
+		top - 08:00:38 up 7 days,  2:58,  1 user,  load average: 0.00, 0.00, 0.00
+		Tasks: 147 total,   1 running, 146 sleeping,   0 stopped,   0 zombie
+		%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+		KiB Mem :  2048312 total,  1454100 free,   109620 used,   484592 buff/cache
+		KiB Swap:        0 total,        0 free,        0 used.  1750244 avail Mem
+
+		  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+		24278 root      20   0   42088   3604   3004 R 99.9  0.2   0:00.04 top
+			1 root      20   0  119380   5576   3992 S  0.0  0.3   0:02.91 systemd
+			2 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kthreadd
+			3 root      20   0       0      0      0 S  0.0  0.0   0:01.10 ksoftirqd/0
+			5 root       0 -20       0      0      0 S  0.0  0.0   0:00.00 kworker/0:0H
+			7 root      20   0       0      0      0 S  0.0  0.0   0:37.98 rcu_sched
+
+Types of process -
+	1) Parent and Child process : The 2nd and 3rd column of the ps –f command shows process id and parent’s process id number.
+	    For each user process there’s a parent process in the system, with most of the commands having shell as their parent.
+	   
+	2) Zombie and Orphan process :  when the parent process is killed before the termination of the child process,
+	    the child processes becomes orphan processes, with the parent of all processes “init” process, becomes their new ppid.
+		A process which is killed but still shows its entry in the process status or the process table is called a zombie process,
+		they are dead and are not used.
+		
+	3) Daemon process : They are system-related background processes that often run with the permissions of root and services
+		requests from other processes, they most of the time run in the background.
+		When ps –ef is executed, the process with ? in the tty field are daemon processes.
+File system -
+- A 'File System' is a logical collection of files on a partition or a disk. 
+- A partition is a container for information.
+- Hard drive can have various partitions which usually contains only one file system.
+- One file system per partition allows for the logical maintenance and management of differing file systems.
+- Everything in Unix is considered to be a file, including physical devices such as DVD-ROMs, USB devices, floppy drives.
+
+Directory Structure - 
+- Unix uses a hierarchical file system structure, much like an upside-down tree, 
+- root (/) at the base of the file system and all other directories spreading from there.
+	/ = This is the root directory which should contain only the directories needed at the top level of the file structure.
+	/bin = This is where the executable files are located. They are available to all user.
+	/dev = These are device drivers.
+	/etc = Supervisor directory commands, configuration files, disk configuration files, valid user lists, groups, ethernet, hosts,
+		   where to send critical messages.
+	/lib = Contains shared library files and sometimes other kernel-related files.
+	/boot = Contains files for booting the system.
+	/home = Contains the home directory for users and other accounts.
+	/mnt = Used to mount other temporary file systems, such as cdrom and floppy for the CD-ROM drive and floppy diskette drive.
+	/proc = Contains all processes marked as a file by process number or other information that is dynamic to the system.
+	/tmp = Holds temporary files used between system boots.
+	/usr = Used for miscellaneous purposes, or can be used by many users.
+		   Includes administrative commands, shared files, library files, and others.
+	/var = Typically contains variable-length files such as log and print files and any other type
+		   of file that may contain a variable amount of data.
+	/sbin = Contains binary (executable) files, usually for system administration. For example fdisk and ifconfig utlities.
+	/kernel = Contains kernel files.
+About mount and umount -
+- The mount command mounts a storage device or filesystem, making it accessible and
+  attaching it to an existing directory structure.
+- The umount command "unmounts" a mounted filesystem, informing the system to complete 
+  any pending read or write operations, and safely detaching it.
+- # mount | column -t = to check mounted file systems
+
+	Description: mount
+	- The standard form of mount command
+		# mount -t type device dir
+		- This tells the kernel to attach the filesystem found on device (which is of type "type")
+		  at the directory dir. 
+		- The previous contents (if any), owner, and mode of dir become invisible, and as long as 
+		  this filesystem remains mounted,
+		- the pathname dir refers to the root of the filesystem on device.
+		Ex1-
+		# mount -t iso9660 /dev/cdrom /mnt/cdrom 
+		- This assumes that your CD-ROM device is called /dev/cdrom and
+		  that you want to mount it to /mnt/cdrom.
+		Ex2-  
+		- If only directory or device is given
+		# mount /dir
+		- then mount looks for a corresponding mountpoint
+		  entry in the /etc/fstab file, and attempts to mount it.
+		  
+	Description: umount
+	- To unmount (remove) the file system from your system, use the umount command by identifying
+	  the mountpoint or device
+	  Ex1-
+	  # umount /dev/cdrom
+	  - to unmount cdrom
+	  
+	for more info - https://www.computerhope.com/unix/umount.htm
+  
+Networking Commands -  
+SSH - Secure Socket Shell, is a network protocol that provides administrators with a secure way
+	  to access a remote computer.
+	- SSH provides a secure channel over an unsecured network in a client-server architecture,
+	  connecting an SSH client application with an SSH sever.
+	- The SSH client drives the connection setup process and uses public key cryptography to
+      verify the identity of the SSH server.
+	- SSH is widely used by network administrators for managing systems and applications remotely,
+	  allowing them to log in to another computer over a network, execute commands and move files
+	  from one computer to another.
+	  
+SCP - Secure Copy Protocol
+	- SCP is a means of securely transferring computer files between a local host and a remote host 
+	  or between two remote hosts. 
+	- It is based on the Secure Shell (SSH) protocol
+
+ifconfig - 
+	- ifconfig stands for "interface configuration". It is used to view and change the configuration
+      of the network interfaces on your system.
+	- will display information about all network interfaces currently in operation.
+	
+	- eth0, lo and wlan0 are the names of the active network interfaces on the system.
+	
+	- 1. eth0 is the first Ethernet interface. (Additional Ethernet interfaces would be named eth1, eth2, etc.)
+      	 This type of interface is usually a NIC connected to the network by a category 5 cable.
+	- 2. lo is the loopback interface. This is a special network interface that the system uses to communicate with itself.
+	- 3. wlan0 is the name of the first wireless network interface on the system.
+	     Additional wireless interfaces would be named wlan1, wlan2, etc.
+	
+	- These are the traditional naming conventions for network interfaces under Linux; other operating systems
+ 	  may have different names.
+	- For instance, under many BSD operating systems, Ethernet interfaces are named em0, em1, etc.
+	
+	# ifconfig -a
+		- Viewing The Configuration Of All Interfaces
+	# ifconfig eth0
+		- Viewing The Configuration Of A Specific Interface (eth0)
+	# ifconfig eth1 up
+	# ifconfig eth1 down
+		- Enabling And Disabling An Interface.
+
+	# ip a = to view network connections.
+	- change IP Address of machine
+	Ex-
+	- To assign an IP of "10.30.9.100" to ethernet connection ("eth0"),
+		# sudo ifconfig eth0 10.30.9.100 netmask 255.255.255.0
+			
+ping -
+	- ping sends ECHO_REQUEST packets to the address you specify.
+	- It’s a great way to see whether your computer can communicate with the Internet or a specific IP address.
+	Ex-
+		# ping 10.30.9.76
+		
+	- You can specify a finite amount of packets with the -c switch.
+		# ping -c 4 10.30.9.76
+
+tracepath & traceroute -
+	- tracepath traces the network path to a destination you specify and reports each “hop” along the path.
+	- If you’re having network problems or slowness, tracepath can show you where the network is failing
+	  or where the slowness is occurring.
+	Ex- 
+		# tracepath google.co.in
+
+mtr -
+	- The mtr command combines ping and tracepath into a single command.
+	- mtr will continue to send packets, showing you the ping time to each “hop.”
+	- This will also show if any problems.
+	
+host- 
+	- The host command performs DNS lookups.
+	- Give it a domain name and you’ll see the associated IP address.
+	- Give it an IP address and you’ll see the associated domain name.
+	Ex-
+	# host 10.30.9.76
+	76.9.30.10.in-addr.arpa domain name pointer auto_imx_ubuntu16_endpoint_2.stc.eng.
+	
+	# host auto_imx_ubuntu16_endpoint_2.stc.eng
+	auto_imx_ubuntu16_endpoint_2.stc.eng has address 10.30.9.76
+
+netstat-
+	- The netstat command can show a lot of different interface statistics, including open sockets and routing tables.
+	- Run the netstat command with no options and you’ll see a list of open sockets.
+	Ex- 
+	- use the netstat -p command to view the programs associated with open sockets.
+		# netstat -p
+	- View detailed statistics for all ports with netstat -s.
+		# netstat -s
+		
+		
+Unix User Administration-
+- 3 types of account
+- 1) Root Account - This is also called superuser and would have complete control of the system.
+				  - A superuser can run any commands without any restriction. 
+				  - This user should be assumed as a system administrator
+  2) System Account - System accounts are those needed for the operation of system-specific components 
+					  for example mail accounts and the sshd accounts. 
+					- These accounts are usually needed for some specific function on your system, 
+					  and any modifications to them could adversely affect the system.
+  3) User Account - User accounts provide interactive access to the system for users and groups of users.
+				  - General users are typically assigned to these accounts and usually have limited access
+					to critical system files and directories.
+
+Managing Users and Groups-
+- groupadd - Adds groups to the system.
+	Ex-
+	# groupadd developers
+		
+- groupmod - Modifies group attributes.
+	Ex-
+	# groupmod -n new_grp_name old_grp_name
+		
+- groupdel - Removes groups from the system.
+	Ex-
+	# groupdel developers
+	
+- useradd - Adds accounts to the system.
+	Ex-
+	# useradd -d homedir -g groupname -m -s shell -u userid accountname
+	
+	-d homedir = Specifies home directory for the account.
+	-g groupname = Specifies a group account for this account.
+	-m = Creates the home directory if it doesn't exist.
+	-s shell = Specifies the default shell for this account.
+	-u userid = You can specify a user id for this account.
+	Accountname = Actual account name to be created.
+	
+	(make sure you already have group created usinggroupadd command.)
+	- Once an account is created you can set its password using the passwd command
+	# passwd accountname
+- usermod - Modifies account attributes.
+	# usermod -d /home/acc_dir_name -m -l new_name old_name
+	-l argument, which allows you to change the account name.
+	
+- userdel - Deletes accounts from the system.  
+	# userdel -r account_name
+	-r argument, which removes account's home directory.
+  
+- To list only usernames type the following awk command:
+	# awk -F':' '{ print $1}' /etc/passwd
+  
+  
+Run Level-
+	- A runlevel is a preset operating state on a Unix-like operating system.
+	- A system can be booted into (i.e. started up into) any of several runlevels,
+	  each of which is represented by a single digit integer.
+	- Each runlevel designates a different system configuration and allows access to
+ 	  a different combination of processes.
+	- The are differences in the runlevels according to the operating system.
+	- Seven runlevels are supported in the standard Linux kernel (i.e. core of the operating system).
+	- They are: 
+		0 - System halt; no activity, the system can be safely powered down. 
+		1 - Single user; rarely used. 
+		2 - Multiple users, no NFS (network filesystem); also used rarely. 
+		3 - Multiple users, command line (i.e., all-text mode) interface; 
+			the standard runlevel for most Linux-based server hardware. 
+		4 - User-definable 
+		5 - Multiple users, GUI (graphical user interface);
+			the standard runlevel for most Linux-based desktop systems. 
+		6 - Reboot; used when restarting the system.
+	
+	- By default Linux boots either to runlevel 3 or to runlevel 5.
+	- The former permits the system to run all services except for a GUI.
+	- The latter allows all services including a GUI.
+	
+	- In addition to the standard runlevels, users can modify the preset runlevels or even
+	  create new ones if desired.
+	- Runlevels 2 and 4 are usually used for user defined runlevels.
+
+	- The program responsible for altering the runlevel is init, and it can be
+	  called using the telinit command.
+	- For example, changing from runlevel 3 to runlevel 5, which allows the GUI to be started,
+	  can be accomplished by the root (i.e., administrative) access.
+	- Ex-
+		# telinit 5
+	- The runlevel command can be used to find both the current runlevel and
+	  the previous runlevel.
+		# /sbin/runlevel
+		
+	- The default runlevel for a system is specified in the /etc/inittab file,
+	  which will contain an entry such as id:3:initdefault: if the system starts in runlevel 3,
+	  or id:5:initdefault: if it starts in runlevel 5.
+	- This file can be easily read with a command such as cat
+		# cat /etc/inittab
+		
+Pipe -
+	- A pipe is a form of redirection (transfer of standard output to some other destination)
+	  that is used in Linux to send the output of one command/program/process to another
+	  command/program/process for further processing.
+	- The Unix/Linux systems allow stdout of a command to be connected to stdin of another command.
+	  You can make it do so by using the pipe character ‘|’.
+
+-----------------------------------------------------
+NFS - A network file system - NFS is a technology for sharing resources between devices on
+		a local area network (LAN).
+	- NFS allows data to be stored on central servers and easily accessed from client devices in
+		a client/server network configuration via a process called mounting.
+	- All network users to access shared files stored on computers of different types.
+	- NFS provides access to shared files through an interface called the Virtual File System (VFS)
+		that runs on top of TCP/IP.
+	- With NFS, computers connected to a network operate as clients while accessing remote files,
+		and as servers while providing remote users access to local shared files.
+	
+NAS - Network Attached Storage.
+	- A typical computer stores data using internal and external hard drives.
+	- If the computer is connected to a network, it can share data on its connected hard drives with
+	  other systems on the network.
+	
+	- By using NAS, computers can store and access data using a centralized storage location.
+	- Instead of each computer sharing its own files, the shared data is stored on a single NAS server.
+	- This provides a simpler and more reliable way of sharing files on a network.
+	- Once an NAS server connected to a network (typically via Ethernet), it can be configured to share files
+	  with multiple computers on the network.
+	- It may allow access to all systems or may provide access to a limited number of authenticated machines.
+	
+	- NAS servers typically contain multiple hard drives, providing a large amount of shared disk space
+	  for connected systems to save data. 
+  
+File Level Storage vs. Block Level Storage -
+	- The two most popular storage system technologies are file level storage and block level storage.
+	  File level storage is seen and deployed in Network Attached Storage (NAS) systems.
+	  Block level storage is seen and deployed in Storage Area Network (SAN) storage.
+	  
+	- File Level Storage – 
+		- This storage technology is most commonly used for storage systems, which is found in hard drives,
+		  NAS systems and so on.
+		- In this File Level storage, the storage disk is configured with a protocol such as NFS or SMB/CIFS
+		  and the files are stored and accessed from it in bulk.
+	
+	- Block Level Storage –
+		- In this block level storage, raw volumes of storage are created and each block can be controlled
+		  as an individual hard drive.
+		- These Blocks are controlled by server based operating systems and each block can be individually
+		  formatted with the required file system.
+	
+	
+Create NFS share -
+	
+# yum install nfs-utils nfs-utils-lib
+# yum install nfs-utils
+# mkdir /var/nfsshare
+# chmod  777 /var/nfsshare
+# chown nfsnobody:nfsnobody /var/nfsshare
+# systemctl enable rpcbind
+# systemctl enable nfs-server
+# enable nfs-lock
+# systemctl start rpcbind
+# systemctl start nfs-server
+# systemctl start nfs-lock
+# systemctl start nfs-idmap
+# vi /etc/exports
+# systemctl restart nfs-server
+# showmount -e	
+	
+	
+	
+	
+	
+	
+	
+-----------------------------------------------------
+disk management executable command on windows server
+in run -> diskmgmt.msc
+
+----------------------------------------------------
+python standard library modules
+https://pymotw.com/3/
+http://ptgmedia.pearsoncmg.com/images/9780321767349/samplepages/0321767349.pdf
+
+Standard library means - packages/modules installed as part python Installation and 
+we don't need to install explicitly. Others are called as third party and available on https://pypi.org/ (Python Package Index).  
+
+understand Git 
+https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
